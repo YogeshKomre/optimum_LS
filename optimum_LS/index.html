@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimum AI Customer Support Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Optimum AI Customer Support Assistant</h1>
+            <div class="issue-categories">
+                <button class="category-btn active" data-category="internet">Internet Issues</button>
+                <button class="category-btn" data-category="video">Video Issues</button>
+                <button class="category-btn" data-category="cable-box">Cable Box Issues</button>
+                <button class="category-btn" data-category="wifi">WiFi Issues</button>
+                <button class="category-btn" data-category="billing">Billing Issues</button>
+                <button class="category-btn" data-category="service-add">Add Service</button>
+                <button class="category-btn" data-category="service-upgrade">Upgrade Service</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message ai">
+                        Hello! I'm here to help with your technical issues. What seems to be the problem?
+                    </div>
+                </div>
+                <div class="input-area">
+                    <textarea id="user-input" placeholder="Type your issue here..." rows="3"></textarea>
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+        </main>
+
+        <div class="customer-mood-section">
+            <h3>Customer Mood Detection</h3>
+            <div class="mood-options">
+                <button class="mood-btn" data-mood="calm">Calm</button>
+                <button class="mood-btn" data-mood="frustrated">Frustrated</button>
+                <button class="mood-btn" data-mood="upset">Upset</button>
+                <button class="mood-btn" data-mood="irate">Irate</button>
+            </div>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

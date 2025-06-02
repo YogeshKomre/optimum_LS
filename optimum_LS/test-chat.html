@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Chat</title>
+    <style>
+        .container { max-width: 600px; margin: 20px auto; }
+        .chat-messages { height: 400px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+        .message { margin: 5px 0; padding: 8px; border-radius: 5px; }
+        .user { background-color: #e3f2fd; }
+        .ai { background-color: #f5f5f5; }
+        .input-area { display: flex; gap: 10px; }
+        textarea { flex: 1; padding: 10px; }
+        button { padding: 10px 20px; }
+        .error { color: red; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Test Chat</h1>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message ai">Welcome to the test chat!</div>
+        </div>
+        <div class="input-area">
+            <textarea id="user-input" placeholder="Type your message..."></textarea>
+            <button id="send-btn">Send</button>
+        </div>
+        <div id="error-message" class="error"></div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        const errorMessage = document.getElementById('error-message');
+
+        function addMessage(message, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'ai'}`;
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function sendMessage() {
+            try {
+                const message = userInput.value.trim();
+                if (!message) {
+                    errorMessage.textContent = 'Please enter a message';
+                    return;
+                }
+
+                errorMessage.textContent = '';
+                addMessage(message, true);
+                
+                // Simulate AI response
+                setTimeout(() => {
+                    addMessage(`Echo: ${message}`);
+                }, 1000);
+                
+                userInput.value = '';
+            } catch (error) {
+                errorMessage.textContent = 'Error: ' + error.message;
+                console.error('Error:', error);
+            }
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Add initial test message
+        addMessage('Try typing a message and pressing Enter!', true);
+    </script>
+</body>
+</html>

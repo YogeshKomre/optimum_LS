@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Chat</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 600px; margin: 20px auto; }
+        .chat-messages { 
+            height: 400px; 
+            overflow-y: auto; 
+            border: 1px solid #ccc; 
+            padding: 10px; 
+            margin-bottom: 10px; 
+            background: white;
+        }
+        .message { 
+            margin: 5px 0; 
+            padding: 8px; 
+            border-radius: 5px; 
+            background: #f5f5f5;
+        }
+        .user { 
+            background: #e3f2fd;
+            margin-left: 20%;
+        }
+        .ai { 
+            background: #f5f5f5;
+            margin-right: 20%;
+        }
+        .input-area { 
+            display: flex; 
+            gap: 10px;
+            background: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        textarea { 
+            flex: 1; 
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: none;
+        }
+        button { 
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; color: #333;">Simple Chat</h1>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message ai">Welcome to the chat! Try typing a message and pressing Enter.</div>
+        </div>
+        <div class="input-area">
+            <textarea id="user-input" placeholder="Type your message here..." rows="2"></textarea>
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Get DOM elements
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        // Add message to chat
+        function addMessage(message, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'ai'}`;
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Handle sending message
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                // Simulate AI response
+                setTimeout(() => {
+                    addMessage(`Echo: ${message}`);
+                }, 1000);
+                userInput.value = '';
+            }
+        }
+
+        // Add event listeners
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Add initial test message
+        addMessage('Type a message and press Enter to test!', true);
+    </script>
+</body>
+</html>

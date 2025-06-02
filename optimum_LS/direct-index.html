@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimum AI Customer Support Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Optimum AI Customer Support Assistant</h1>
+            <div class="issue-categories">
+                <button class="category-btn active" data-category="internet">Internet Issues</button>
+                <button class="category-btn" data-category="video">Video Issues</button>
+                <button class="category-btn" data-category="cable-box">Cable Box Issues</button>
+                <button class="category-btn" data-category="wifi">WiFi Issues</button>
+                <button class="category-btn" data-category="billing">Billing Issues</button>
+                <button class="category-btn" data-category="service-add">Add Service</button>
+                <button class="category-btn" data-category="service-upgrade">Upgrade Service</button>
+            </div>
+        </header>
+        <main>
+            <div class="chat-container">
+                <div class="chat-messages" id="chat-messages">
+                    <!-- Messages will be added here -->
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="user-input" placeholder="Type your message...">
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
